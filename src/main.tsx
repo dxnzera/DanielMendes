@@ -6,8 +6,8 @@ import type { Copy, Locale, Project, ProfileCard } from "./content/types";
 import "./styles.css";
 
 const ASSETS = {
-  logo: "/assets/daniel-mendes-logo.png",
-  mark: "/assets/favicon.png",
+  logo: new URL("../assets/daniel-mendes-logo.png", import.meta.url).href,
+  mark: new URL("../assets/favicon.png", import.meta.url).href,
 };
 
 const LINKS = {

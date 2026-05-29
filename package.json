@@ -1,14 +1,15 @@
 {
   "name": "daniel-mendes-portfolio",
   "version": "1.0.0",
+  "homepage": "https://dxnzera.github.io/DanielMendes/",
   "private": true,
   "type": "module",
-   "homepage": "https://dxnzera.github.io/DanielMendes/",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc && vite build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -b gh-pages",
+    "preview": "vite preview --host 127.0.0.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.15",
