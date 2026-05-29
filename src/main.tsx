@@ -72,11 +72,11 @@ function Header({
   onToggleLocale: () => void;
 }) {
   return (
-    <header className="editorial-shell hairline grid min-h-28 grid-cols-[1fr_auto] items-start gap-5 py-5 md:min-h-36 md:grid-cols-[0.9fr_1.1fr_0.9fr]">
-      <a className="block w-28 md:w-36 lg:w-48" href="#top" aria-label="Daniel Mendes home">
+    <header className="editorial-shell hairline grid min-h-0 grid-cols-[auto_1fr] items-start gap-x-4 gap-y-5 py-4 md:min-h-36 md:grid-cols-[0.9fr_1.1fr_0.9fr] md:gap-5 md:py-5">
+      <a className="block w-32 sm:w-36 md:w-36 lg:w-48" href="#top" aria-label="Daniel Mendes home">
         <img src={ASSETS.logo} alt="Daniel Mendes" className="h-auto w-full" />
       </a>
-      <nav className="order-3 flex flex-wrap gap-6 md:order-none md:justify-self-center" aria-label="Primary navigation">
+      <nav className="order-3 col-span-2 flex w-full flex-wrap justify-between gap-x-4 gap-y-3 border-t border-cream/10 pt-4 md:order-none md:col-span-1 md:w-auto md:justify-center md:justify-self-center md:gap-6 md:border-0 md:pt-0" aria-label="Primary navigation">
         <a className="nav-link" href="#about">{copy.nav.about}</a>
         <a className="nav-link" href="#projects">{copy.nav.projects}</a>
         <a className="nav-link" href="#contact">{copy.nav.contact}</a>
@@ -90,7 +90,7 @@ function Header({
           {locale === "en" ? "PT" : "EN"}
         </button>
       </nav>
-      <p className="microcopy justify-self-end text-right">{copy.headerMeta}</p>
+      <p className="microcopy max-w-[9.5rem] justify-self-end text-right md:max-w-none">{copy.headerMeta}</p>
     </header>
   );
 }
@@ -112,7 +112,7 @@ function SplitHeading({
       <h2 className={`${titleClassName} md:col-start-1 md:col-end-6`}>
         <LineStack lines={titleLines} />
       </h2>
-      <p className="max-w-[30rem] text-lg leading-tight text-cream md:col-start-7 md:col-end-13 md:justify-self-end md:text-right">
+      <p className="max-w-[30rem] text-base leading-tight text-cream md:col-start-7 md:col-end-13 md:justify-self-end md:text-right md:text-lg">
         <LineStack lines={copyLines} />
       </p>
     </div>
@@ -121,9 +121,9 @@ function SplitHeading({
 
 function Hero({ copy }: { copy: Copy }) {
   return (
-    <section id="top" className="editorial-shell hairline relative grid min-h-[72vh] grid-cols-12 gap-x-5 overflow-visible pb-8 pt-6 md:min-h-[78vh]">
+    <section id="top" className="editorial-shell hairline relative grid min-h-0 grid-cols-12 content-start gap-x-5 gap-y-5 overflow-visible pb-10 pt-8 md:min-h-[78vh] md:gap-y-0 md:overflow-visible md:pb-8 md:pt-6">
       <Watermark
-        className="right-[-6rem] top-[2rem] h-[40rem] w-[40rem] animate-drift opacity-[0.12] watermark-fade-right"
+        className="right-[-8rem] top-[5rem] h-[28rem] w-[28rem] animate-drift opacity-[0.12] md:right-[-6rem] md:top-[2rem] md:h-[40rem] md:w-[40rem] watermark-fade-right"
         rotate={7}
       />
       <div className="col-span-12 flex items-start justify-between gap-5">
@@ -132,7 +132,7 @@ function Hero({ copy }: { copy: Copy }) {
       <h1 className="display-title col-span-12 max-w-[88rem]">
         <LineStack lines={copy.hero.titleLines} />
       </h1>
-      <p className="col-span-12 mt-4 max-w-[34rem] text-[clamp(1.1rem,1.55vw,1.85rem)] font-bold leading-[1.05] text-cream md:mt-5 md:col-start-8 md:col-end-12">
+      <p className="col-span-12 max-w-[22rem] text-[clamp(1rem,4.6vw,1.25rem)] font-bold leading-[1.05] text-cream md:col-start-8 md:col-end-12 md:mt-5 md:max-w-[34rem] md:text-[clamp(1.1rem,1.55vw,1.85rem)]">
         <LineStack lines={copy.hero.copyLines} />
       </p>
     </section>
@@ -143,10 +143,10 @@ function AboutCard({ card }: { card: ProfileCard }) {
   return (
     <article className="border border-cream/10 bg-black/20 p-5 md:p-6">
       <p className="microcopy text-acid">{card.eyebrow}</p>
-      <h3 className="mt-4 text-[clamp(1.8rem,3.2vw,3.4rem)] font-black uppercase leading-[0.88]">
+      <h3 className="mt-4 break-words text-[clamp(1.65rem,9vw,2.6rem)] font-black uppercase leading-[0.88] md:text-[clamp(1.8rem,3.2vw,3.4rem)]">
         <LineStack lines={card.titleLines} />
       </h3>
-      <p className="mt-5 max-w-[20rem] text-sm leading-tight text-bone md:text-base">
+      <p className="mt-5 max-w-none text-sm leading-tight text-bone md:max-w-[20rem] md:text-base">
         <LineStack lines={card.bodyLines} />
       </p>
     </article>
@@ -155,14 +155,14 @@ function AboutCard({ card }: { card: ProfileCard }) {
 
 function About({ copy }: { copy: Copy }) {
   return (
-    <section id="about" className="editorial-shell hairline relative overflow-hidden py-24 md:py-28">
+    <section id="about" className="editorial-shell hairline relative overflow-hidden pb-16 pt-10 md:py-28">
       <SplitHeading
         kicker={copy.about.kicker}
         titleLines={copy.about.titleLines}
         copyLines={copy.about.introLines}
-        titleClassName="text-[clamp(2.8rem,6vw,7rem)] font-black uppercase leading-[0.86]"
+        titleClassName="text-[clamp(2.8rem,15vw,4.9rem)] font-black uppercase leading-[0.86] md:text-[clamp(2.8rem,6vw,7rem)]"
       />
-      <div className="mx-auto mt-10 grid max-w-[1100px] gap-6 md:grid-cols-2 md:gap-8">
+      <div className="mx-auto mt-8 grid max-w-[1100px] gap-5 md:mt-10 md:grid-cols-2 md:gap-8">
         {copy.about.profileCards.map((card) => (
           <AboutCard key={card.eyebrow} card={card} />
         ))}
@@ -182,7 +182,7 @@ function LinkPill({
 }) {
   if (!href || !active) {
     return (
-      <span className="inline-flex min-w-24 items-center justify-center border border-cream/20 px-4 py-2 text-[10px] uppercase tracking-normal text-bone/50">
+      <span className="inline-flex min-w-[8rem] flex-1 items-center justify-center border border-cream/20 px-4 py-2 text-[10px] uppercase tracking-normal text-bone/50 md:min-w-24 md:flex-none">
         {label}
       </span>
     );
@@ -190,7 +190,7 @@ function LinkPill({
 
   return (
     <a
-      className="inline-flex min-w-24 items-center justify-center border border-acid/40 px-4 py-2 text-[10px] uppercase tracking-normal text-acid transition-colors hover:border-acid hover:bg-acid hover:text-ink"
+      className="inline-flex min-w-[8rem] flex-1 items-center justify-center border border-acid/40 px-4 py-2 text-[10px] uppercase tracking-normal text-acid transition-colors hover:border-acid hover:bg-acid hover:text-ink md:min-w-24 md:flex-none"
       href={href}
       target="_blank"
       rel="noreferrer"
@@ -202,23 +202,23 @@ function LinkPill({
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
-    <article className="grid gap-5 border-t border-cream/20 py-6 md:grid-cols-12 md:gap-5 md:py-6">
-      <div className="visual-panel grid-glow relative min-h-[22rem] md:col-start-1 md:col-end-7 md:min-h-[28rem]">
-        <Watermark className="right-[-12%] top-[-10%] h-[80%] w-[80%] animate-drift opacity-[0.15]" rotate={index % 2 === 0 ? 12 : -8} />
-        <div className="dot-matrix absolute inset-x-8 bottom-8 h-28 opacity-20" aria-hidden="true" />
+    <article className="grid gap-5 border-t border-cream/20 py-8 md:grid-cols-12 md:gap-5 md:py-6">
+      <div className="visual-panel grid-glow relative min-h-[18rem] md:col-start-1 md:col-end-7 md:min-h-[28rem]">
+        <Watermark className="right-[-18%] top-[-8%] h-[75%] w-[75%] animate-drift opacity-[0.15] md:right-[-12%] md:top-[-10%] md:h-[80%] md:w-[80%]" rotate={index % 2 === 0 ? 12 : -8} />
+        <div className="dot-matrix absolute inset-x-5 bottom-6 h-24 opacity-20 md:inset-x-8 md:bottom-8 md:h-28" aria-hidden="true" />
         <div className="relative z-10 flex h-full flex-col justify-between">
           <p className="microcopy text-acid">{String(index + 1).padStart(2, "0")}</p>
           <div>
             <p className="microcopy text-bone">{project.role}</p>
-            <p className="mt-3 max-w-[16rem] text-[clamp(1.85rem,4vw,4.6rem)] font-black uppercase leading-[0.88] text-cream">
+            <p className="mt-3 max-w-[14rem] text-[clamp(2.2rem,15vw,4.2rem)] font-black uppercase leading-[0.88] text-cream md:max-w-[16rem] md:text-[clamp(1.85rem,4vw,4.6rem)]">
               {project.name}
             </p>
           </div>
         </div>
       </div>
-      <div className="self-end md:col-start-8 md:col-end-13">
+      <div className="md:col-start-8 md:col-end-13 md:self-end">
         <p className="section-kicker">{project.role}</p>
-        <h3 className="mt-4 text-[clamp(2.2rem,3.8vw,4.9rem)] font-black uppercase leading-[0.88]">
+        <h3 className="mt-4 text-[clamp(2.4rem,14vw,4rem)] font-black uppercase leading-[0.88] md:text-[clamp(2.2rem,3.8vw,4.9rem)]">
           {project.name}
         </h3>
         <p className="mt-5 max-w-[28rem] text-base leading-tight text-bone md:text-lg">
@@ -240,12 +240,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 function Projects({ copy }: { copy: Copy }) {
   return (
-    <section id="projects" className="editorial-shell hairline relative overflow-hidden py-24 md:py-28">
+    <section id="projects" className="editorial-shell hairline relative overflow-hidden py-16 md:py-28">
       <SplitHeading
         kicker={copy.projects.kicker}
         titleLines={copy.projects.titleLines}
         copyLines={copy.projects.introLines}
-        titleClassName="text-[clamp(2.9rem,6.8vw,8rem)] font-black uppercase leading-[0.86]"
+        titleClassName="text-[clamp(2.7rem,14vw,5rem)] font-black uppercase leading-[0.86] md:text-[clamp(2.9rem,6.8vw,8rem)]"
       />
       <div className="mt-10">
         {copy.projects.items.map((project, index) => (
@@ -292,16 +292,16 @@ function Contact({ copy }: { copy: Copy }) {
             ))}
           </div>
         </div>
-        <div className="md:col-start-7 md:col-end-13 flex flex-col self-start md:-mt-20 lg:-mt-24">
-          <div className="ml-auto flex w-fit flex-col items-end">
+        <div className="flex flex-col self-start md:col-start-7 md:col-end-13 md:-mt-20 lg:-mt-24">
+          <div className="mx-auto flex w-full flex-col items-center md:ml-auto md:w-fit md:items-end">
             <a
-              className="block w-[min(100%,20rem)] md:w-[24rem] lg:w-[28rem]"
+              className="block w-[min(82vw,18rem)] md:w-[24rem] lg:w-[28rem]"
               href="#top"
               aria-label="Daniel Mendes home"
             >
               <img src={ASSETS.logo} alt="Daniel Mendes" className="h-auto w-full" />
             </a>
-            <div className="mt-8 flex justify-end gap-4 text-[clamp(1.15rem,1.8vw,1.8rem)] font-black uppercase leading-none text-acid">
+            <div className="mt-8 flex justify-center gap-4 text-[clamp(1.15rem,1.8vw,1.8rem)] font-black uppercase leading-none text-acid md:justify-end">
               <a
                 href={LINKS.linkedin}
                 target="_blank"
@@ -321,7 +321,7 @@ function Contact({ copy }: { copy: Copy }) {
               </a>
             </div>
             <a
-              className="contact-link mt-4 block whitespace-nowrap text-right text-[clamp(2.5rem,5vw,3rem)] leading-[0.9]"
+              className="contact-link mt-4 block whitespace-nowrap text-center text-[clamp(1.65rem,8vw,2.45rem)] leading-[0.9] md:text-right md:text-[clamp(2.5rem,5vw,3rem)]"
               href={`mailto:${LINKS.email}`}
             >
               {LINKS.email}
@@ -335,7 +335,7 @@ function Contact({ copy }: { copy: Copy }) {
 
 function Footer({ copy, localTime }: { copy: Copy; localTime: string }) {
   return (
-    <footer className="editorial-shell flex flex-wrap items-center justify-between gap-5 border-t border-cream/20 py-5">
+    <footer className="editorial-shell flex flex-col items-center justify-between gap-5 border-t border-cream/20 py-5 text-center md:flex-row md:text-left">
       <p className="microcopy">Daniel Mendes</p>
       <div className="mt-8 flex flex-col items-center self-center text-center">
         <p className="microcopy max-w-[28rem] text-bone">
@@ -345,7 +345,7 @@ function Footer({ copy, localTime }: { copy: Copy; localTime: string }) {
           {copy.contact.localTimeLabel} {localTime}
         </p>
       </div>
-      <div className="flex flex-wrap gap-5">
+      <div className="flex flex-wrap justify-center gap-5">
         <a className="nav-link text-acid" href={LINKS.linkedin} target="_blank" rel="noreferrer">
           {copy.nav.linkedin}
         </a>
