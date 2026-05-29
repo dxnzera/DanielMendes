@@ -101,7 +101,7 @@ export const enCopy: Copy = {
         liveLabel: "Deploy",
         repoLabel: "GitHub",
 
-        liveUrl: undefined,
+        liveUrl: "https://dxnzera.github.io/Scenr/#/",
 
         repoUrl: "https://github.com/dxnzera",
       },
@@ -120,7 +120,7 @@ export const enCopy: Copy = {
         liveLabel: "Deploy",
         repoLabel: "GitHub",
 
-        liveUrl: undefined,
+        liveUrl: "https://dxnzera.github.io/lanche/",
 
         repoUrl: "https://github.com/dxnzera",
       },
