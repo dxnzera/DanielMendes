@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 320px;
+    overflow-x: hidden;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(186, 255, 33, 0.18), transparent 19rem),
+      radial-gradient(circle at 87% 40%, rgba(44, 255, 151, 0.11), transparent 23rem),
+      #050804;
+    color: #f1eadb;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  ::selection {
+    background: #baff21;
+    color: #050804;
+  }
+}
+
+@layer components {
+  .editorial-shell {
+    @apply mx-auto w-[min(calc(100%-32px),1560px)] md:w-[min(calc(100%-48px),1560px)];
+  }
+
+  .hairline {
+    @apply border-b border-cream/20;
+  }
+
+  .microcopy {
+    @apply text-[10px] uppercase leading-none text-bone/80 md:text-[11px];
+  }
+
+  .nav-link {
+    @apply relative pb-1 text-[10px] uppercase leading-none text-cream transition-colors hover:text-acid md:text-[11px];
+  }
+
+  .nav-link::after {
+    @apply absolute bottom-0 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-200 content-[''];
+  }
+
+  .nav-link:hover::after {
+    @apply origin-left scale-x-100;
+  }
+
+  .section-kicker {
+    @apply text-[10px] uppercase leading-none text-acid md:text-[11px];
+  }
+
+  .display-title {
+    @apply text-[clamp(4.4rem,11vw,13rem)] font-black uppercase leading-[0.82] tracking-normal;
+  }
+
+  .watermark {
+    --mark-rotate: 0deg;
+    @apply pointer-events-none absolute select-none opacity-10 mix-blend-screen;
+  }
+
+  .watermark img {
+    @apply h-full w-full object-contain;
+    filter: invert(87%) sepia(100%) saturate(1045%) hue-rotate(20deg) brightness(106%) contrast(105%);
+  }
+
+  .project-card {
+    @apply grid gap-6 border-t border-cream/20 py-8 md:grid-cols-12 md:gap-5;
+  }
+
+  .visual-panel {
+    @apply min-h-[320px] overflow-hidden border border-acid/30 bg-moss p-4 shadow-[0_0_80px_rgba(186,255,33,0.13)] md:min-h-[460px];
+  }
+
+  .contact-link {
+    @apply inline-block max-w-full overflow-wrap-anywhere text-[clamp(2rem,5.6vw,6.5rem)] font-black uppercase leading-[0.88] text-acid underline decoration-2 underline-offset-8 transition-colors hover:text-cream;
+  }
+}
+
+@layer utilities {
+  .overflow-wrap-anywhere {
+    overflow-wrap: anywhere;
+  }
+
+  .grid-glow {
+    background-image:
+      linear-gradient(rgba(241, 234, 219, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(241, 234, 219, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .dot-matrix {
+    background-image: radial-gradient(circle, rgba(186, 255, 33, 0.55) 0 1px, transparent 1.5px);
+    background-size: 16px 16px;
+  }
+}
