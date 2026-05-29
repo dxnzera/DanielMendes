@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+   "homepage": "https://dxnzera.github.io/DanielMendes/",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "tsc && vite build",
-    "preview": "vite preview --host 127.0.0.1",
+    "dev": "vite",
+    "build": "vite build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -b gh-pages"
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@types/react": "^19.2.15",
