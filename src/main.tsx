@@ -121,7 +121,7 @@ function SplitHeading({
 
 function Hero({ copy }: { copy: Copy }) {
   return (
-    <section id="top" className="editorial-shell hairline relative grid min-h-0 grid-cols-12 content-start gap-x-5 gap-y-5 overflow-visible pb-10 pt-8 md:min-h-[78vh] md:gap-y-0 md:overflow-visible md:pb-8 md:pt-6">
+    <section id="top" className="editorial-shell hairline relative grid min-h-0 grid-cols-12 content-start gap-x-5 gap-y-5 overflow-visible pb-8 pt-8 md:min-h-[60vh] md:gap-y-0 md:overflow-visible md:pb-8 md:pt-6">
       <Watermark
         className="right-[-8rem] top-[5rem] h-[28rem] w-[28rem] animate-drift opacity-[0.12] md:right-[-6rem] md:top-[2rem] md:h-[40rem] md:w-[40rem] watermark-fade-right"
         rotate={7}
