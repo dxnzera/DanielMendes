@@ -1,4 +1,4 @@
-import { StrictMode, useEffect, useState } from "react";
+import { StrictMode, useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { createRoot } from "react-dom/client";
 import { COPIES } from "./content";
@@ -205,6 +205,74 @@ function LinkPill({
   );
 }
 
+function ProjectVideo({ src, label }: { src: string; label: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [showPlay, setShowPlay] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const markPlaying = () => setShowPlay(false);
+    const markPaused = () => setShowPlay(true);
+    const tryPlay = () => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+
+      const playback = video.play();
+      if (playback) {
+        playback.then(markPlaying).catch(markPaused);
+      }
+    };
+
+    video.addEventListener("play", markPlaying);
+    video.addEventListener("pause", markPaused);
+    video.addEventListener("canplay", tryPlay, { once: true });
+    tryPlay();
+
+    return () => {
+      video.removeEventListener("play", markPlaying);
+      video.removeEventListener("pause", markPaused);
+      video.removeEventListener("canplay", tryPlay);
+    };
+  }, [src]);
+
+  const handlePlay = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.play().then(() => setShowPlay(false)).catch(() => setShowPlay(true));
+  };
+
+  return (
+    <>
+      <video
+        ref={videoRef}
+        className="absolute inset-0 h-full w-full object-cover opacity-70"
+        src={src}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      />
+      <button
+        className={`absolute inset-0 z-20 flex items-center justify-center transition-opacity md:hidden ${showPlay ? "opacity-100" : "pointer-events-none opacity-0"}`}
+        type="button"
+        onClick={handlePlay}
+        aria-label={`Play ${label} video`}
+      >
+        <span className="grid h-16 w-16 place-items-center rounded-full border border-acid/60 bg-ink/70 shadow-[0_0_32px_rgba(186,255,33,0.22)] backdrop-blur">
+          <span className="ml-1 h-0 w-0 border-y-[12px] border-l-[18px] border-y-transparent border-l-acid" />
+        </span>
+      </button>
+    </>
+  );
+}
+
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const videoUrl = ASSETS.projectVideos[project.name as keyof typeof ASSETS.projectVideos];
 
@@ -212,16 +280,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     <article className="grid gap-5 border-t border-cream/20 py-8 md:grid-cols-12 md:gap-5 md:py-6">
       <div className="visual-panel grid-glow relative min-h-[18rem] md:col-start-1 md:col-end-7 md:min-h-[28rem]">
         {videoUrl ? (
-          <video
-            className="absolute inset-0 h-full w-full object-cover opacity-70"
-            src={videoUrl}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden="true"
-          />
+          <ProjectVideo src={videoUrl} label={project.name} />
         ) : null}
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-ink/40" aria-hidden="true" />
         <div className="relative z-10 flex h-full flex-col justify-between">
