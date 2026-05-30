@@ -8,6 +8,11 @@ import "./styles.css";
 const ASSETS = {
   logo: new URL("../assets/daniel-mendes-logo.png", import.meta.url).href,
   mark: new URL("../assets/favicon.png", import.meta.url).href,
+  projectVideos: {
+    "Scenr": new URL("../assets/Scenr - Video.mp4", import.meta.url).href,
+    "Lanchê": new URL("../assets/Lanche - Video.mp4", import.meta.url).href,
+    "XiS Tickets": new URL("../assets/Xis - Video.mov", import.meta.url).href,
+  },
 };
 
 const LINKS = {
@@ -201,16 +206,29 @@ function LinkPill({
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const videoUrl = ASSETS.projectVideos[project.name as keyof typeof ASSETS.projectVideos];
+
   return (
     <article className="grid gap-5 border-t border-cream/20 py-8 md:grid-cols-12 md:gap-5 md:py-6">
       <div className="visual-panel grid-glow relative min-h-[18rem] md:col-start-1 md:col-end-7 md:min-h-[28rem]">
-        <Watermark className="right-[-18%] top-[-8%] h-[75%] w-[75%] animate-drift opacity-[0.15] md:right-[-12%] md:top-[-10%] md:h-[80%] md:w-[80%]" rotate={index % 2 === 0 ? 12 : -8} />
-        <div className="dot-matrix absolute inset-x-5 bottom-6 h-24 opacity-20 md:inset-x-8 md:bottom-8 md:h-28" aria-hidden="true" />
+        {videoUrl ? (
+          <video
+            className="absolute inset-0 h-full w-full object-cover opacity-70"
+            src={videoUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+          />
+        ) : null}
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-ink/40" aria-hidden="true" />
         <div className="relative z-10 flex h-full flex-col justify-between">
           <p className="microcopy text-acid">{String(index + 1).padStart(2, "0")}</p>
           <div>
             <p className="microcopy text-bone">{project.role}</p>
-            <p className="mt-3 max-w-[14rem] text-[clamp(2.2rem,15vw,4.2rem)] font-black uppercase leading-[0.88] text-cream md:max-w-[16rem] md:text-[clamp(1.85rem,4vw,4.6rem)]">
+            <p className="mt-3 max-w-[14rem] text-[clamp(2.2rem,15vw,2.2rem)] font-black uppercase leading-[0.88] text-cream md:max-w-[16rem] md:text-[clamp(1.85rem,4vw,2.6rem)]">
               {project.name}
             </p>
           </div>
